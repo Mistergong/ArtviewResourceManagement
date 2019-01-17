@@ -1,7 +1,4 @@
 export { API, BASE_URL } from './api';
-// export { $menu } from './menu';
-// export { PAGE } from './page';
-// export { $SYSTEM } from './system';
 export { $DATA } from './data';
 // 全局的loading 配置对象
 export const LOADING_PARAM_OBJ = {
