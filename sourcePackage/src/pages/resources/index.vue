@@ -4,7 +4,7 @@
       <template v-for="(item, index) in resList">
         <div class="res-item fl" :key="'res_items_' + index">
           <img v-if="isVisitor" class="res-item__headimg" src="../../assets/images/resourcebk.png" alt="" @click="clickVisitorTap()">
-          <img v-else-if="item.logoUrl" class="res-item__headimg" src="../../assets/images/resource_init.png" alt="" @click="clickResourceTap(item.typeKey, item.name)">
+          <img v-else-if="item.logoUrl" class="res-item__headimg" :src="item.logoUrl" alt="" @click="clickResourceTap(item.typeKey, item.name)">
           <img v-else class="res-item__headimg" src="../../assets/images/resourcebk.png" alt="">
           <div class="res-name">{{item.name}}</div>
         </div>
@@ -138,6 +138,10 @@ export default {
         success: res => {
           console.log(res);
           this.resList = res.data;
+          for(var i=0; i<this.resList.length; i++){
+            if(this.resList[i].logoUrl)this.resList[i].logoUrl = this.$store.state.HOSTurl + this.resList[i].logoUrl;
+            else this.resList[i].logoUrl = "../../assets/images/resourcebk.png";
+          }
         }
       });
     },
